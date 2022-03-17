@@ -1,6 +1,6 @@
 <?php
 
-$pesel = 02301001234;
+$pesel = "02301001234";
 
 function pesel($pesel){
     $rok = substr($pesel, 0, 2);

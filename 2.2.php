@@ -3,7 +3,7 @@
 $r = 3;
 
 function d($r){
-    $d = $r*2;
+    $d = $r * 2;
     echo $d;
 }
 d($r);

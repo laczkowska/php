@@ -8,26 +8,26 @@ echo "jaką figurę wybierasz?";
 
 switch($figura){
     case 1:
-        echo " trójkąt";
+        echo " trójkąt : ";
         function trójkąt($a, $h){
-            $trójkąt = $a*$h;
-            echo $trójkąt;
+            $trójkąt = ($a*$h)/2;
+            return $trójkąt;
         }
-        trójkąt($a, $h); break;
+        echo trójkąt($a, $h); break;
 
     case 2:
-        echo " prostokąt";
+        echo " prostokąt : ";
         function prostokąt($a, $b){
             $prostokąt = $a*$b;
-            echo $prostokąt;
+            return $prostokąt;
         }
-        prostokąt($a, $b); break;
+        echo prostokąt($a, $b); break;
 
     case 3:
-        echo " trapez";
+        echo " trapez : ";
         function trapez($a, $b, $h){
-            $trapez = ($a+$b)*$h;
-            echo $trapez;
+            $trapez = (($a+$b)*$h)/2;
+            return $trapez;
         }
-        trapez($a, $b, $h); break;
+        echo trapez($a, $b, $h); break;
 }

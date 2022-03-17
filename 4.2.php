@@ -1,8 +1,15 @@
 <?php
 
-$dice = rand(1, 6);
-
 function d($dice){
+
+    for ($i=0; $i<=6; $i++){
+        $dice = rand(1, 6);
+
+    }
+
+    $
+
+
     switch ($dice) {
         case 1:
             return "*";
