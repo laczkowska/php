@@ -1,30 +1,28 @@
 <?php
 
-$array["onas"]=["nazwa" => "O nas", "link" => "onas", "tresc" => "tu możesz poczytać o nas"];
-$array["kontakt"]=["nazwa" => "Kontakt", "link" => "kontakt", "tresc" => "mail: aaa@zzz.ccc, telefon: +00 777 666 111"];
+$array["onas"] = ["nazwa" => "O nas", "link" => "onas", "tresc" => "tu możesz poczytać o nas"];
+$array["kontakt"] = ["nazwa" => "Kontakt", "link" => "kontakt", "tresc" => "mail: aaa@zzz.ccc, telefon: +00 777 666 111"];
 
 
 $valid="onas";
 if(isset($_GET['link'])){
-    $a=$_GET['link'];
+    $a = $_GET['link'];
     foreach ($array as $n){
-        if($n["link"]==$a){
-            $valid=$n["link"];
+        if($n["link"] == $a){
+            $valid = $n["link"];
         }
     }
     $a=$valid;
 }
 else{
-    $a="onas";
+    $a = "onas";
 }
-
-
 $a = $_GET['link'];
 echo'<!DOCTYPE html>
 
 <html lang = "pl">
 <head>
-    <meta charset="UTF-8">
+    <meta charset = "UTF-8">
     <title>'.$array[$a]["nazwa"];
     echo '</title>
 </head>
@@ -36,6 +34,8 @@ echo '<ul>';
         echo "<li> <a href = '4.2.php?link=".$x["link"]."'>".$x["nazwa"]."</a></li>";
     }
     echo'</ul>';
+        echo $array[$a]["nazwa"];
+        echo "<br>";
         echo $array[$a]["tresc"];
     echo '</body>
     </head>';
