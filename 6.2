@@ -5,33 +5,31 @@ session_start();
 
 function dodaj($tableIndex){
     //echo $tableIndex;
-    $file = fopen("produkty","r")or die("umarłem");
+    $file = fopen("produkty", "r") or die ("error: dead");
     while (!feof($file) ) {
         $table[] = fgetcsv($file);
     }
 
     if(empty($_SESSION['cart'])){
-        $file = fopen("produkty","r")or die("umarłem");
+        $file = fopen("produkty", "r") or die ("error: dead");
         while (!feof($file) ) {
             $_SESSION['cart'][] = fgetcsv($file);
         }
         $i=0;
         foreach($_SESSION['cart'] as $a){
-            $_SESSION['cart'][$i][1]=0;
-            $_SESSION['cart'][$i][2]=(int)$_SESSION['cart'][$i][2];
+            $_SESSION['cart'][$i][1] = 0;
+            $_SESSION['cart'][$i][2] = (int)$_SESSION['cart'][$i][2];
             $i++;
         }
 
     }
-    $_SESSION['cart'][$tableIndex][1]+=1;
+    $_SESSION['cart'][$tableIndex][1] += 1;
 
-    $_SESSION['cart'][$tableIndex][2]=$table[$tableIndex][2]*$_SESSION['cart'][$tableIndex][1];
-    //var_dump($_SESSION['cart']);
-    //echo $_SESSION['cart'][$tableIndex][2];
+    $_SESSION['cart'][$tableIndex][2] = $table[$tableIndex][2]*$_SESSION['cart'][$tableIndex][1];
     totalPrice();
 }
 function usun($tableIndex){
-    $file = fopen("produkty","r")or die("umarłem");
+    $file = fopen("produkty", "r") or die ("error: dead");
     while (!feof($file) ) {
         $table[] = fgetcsv($file);
     }
@@ -45,10 +43,10 @@ function wyczysc(){
     unset($_SESSION['totalPrice']);
 }
 function totalPrice(){
-    $_SESSION['totalPrice']=0;
+    $_SESSION['totalPrice'] = 0;
 foreach($_SESSION['cart'] as $a){
     if($a[1]<>0){
-        $_SESSION['totalPrice']+=$a[2];
+        $_SESSION['totalPrice'] += $a[2];
     }
 
 }}
@@ -59,16 +57,16 @@ foreach($_SESSION['cart'] as $a){
 
 <?php
 include 'cartHandle.php';
-$file = fopen("produkty","r")or die("umarłem");
+$file = fopen("produkty", "r") or die ("error: dead");
 while (!feof($file) ) {
     $tablica[] = fgetcsv($file);
 }
-for($i=0;$i<count($tablica);$i++) {
+for($i = 0; $i < count($tablica); $i++) {
     if (isset($_GET['add'.$i])){
         dodaj($i);
     }
     }
-for($i=0;$i<count($tablica);$i++) {
+for($i = 0; $i < count($tablica); $i++) {
     if (isset($_GET['del'.$i])){
         usun($i);
     }
@@ -80,20 +78,17 @@ if(isset($_GET['clear'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kosz</title>
+    <title>koszyk</title>
 </head>
 <body>
 <table>
-    <form method="get">
+    <form method = "get">
 <?php
-//var_dump($tablica);
-$i=0;
+$i = 0;
 foreach($tablica as $a){
     echo '<tr>';
     echo "<td>".$a[0]."</td><td>".$a[1]."</td><td>".$a[2]."zł </td>";
-    echo '<td><input type="submit" name="add'.$i.'" value="do koszyka"><br></td>';
+    echo '<td><input type = "submit" name = "add'.$i.'" value = "do koszyka"><br><br></td>';
     $i++;
     echo '</tr>';
 }
@@ -104,28 +99,27 @@ foreach($tablica as $a){
 <?php
 if(!empty($_SESSION['cart'])){
     echo '<table>
-    <form method="get">';
+    <form method = "get">';
 
-        //var_dump($tablica);
-        $i=0;
+        $i = 0;
         foreach($_SESSION['cart'] as $a){
-            if($a[1]>0){
+            if($a[1] > 0){
                 echo '<tr>';
                 echo "<td>".$a[0]."</td><td>".$a[1]."</td><td>".$a[2]."zł </td>";
-                echo '<td><input type="submit" name="del'.$i.'" value="usuń"><br></td>';
+                echo '<td><input type = "submit" name = "del'.$i.'" value = "usuń"><br><br></td>';
                 $i++;
                 echo '</tr>';
             }
             else{
                 echo '<tr hidden>';
                 echo "<td>".$a[0]."</td><td>".$a[1]."</td><td>".$a[2]."zł </td>";
-                echo '<td><input type="submit" name="del'.$i.'" value="usuń"><br></td>';
+                echo '<td><input type = "submit" name = "del'.$i.'" value = "usuń"><br><br></td>';
                 $i++;
                 echo '</tr>';
             }
         }
         echo "Total price: ".$_SESSION['totalPrice'];
-        echo '<tr><td><input type="submit" name="clear" value="wyczyść"></td></tr>
+        echo '<tr><td><input type = "submit" name = "clear" value = "wyczyść"></td></tr>
     </form>
     </table>';
 }
@@ -137,7 +131,7 @@ if(!empty($_SESSION['cart'])){
 
 6.2 C PRODUKTY:
 
-Jajka,1,10
-Monsterek,1,20
-Czipsy,1,30
-Świerzak,1,40
+goździki, 1, 15
+tulipany, 1, 20
+piwonie, 1, 30
+bzy, 1, 35
