@@ -1,13 +1,13 @@
 6.1. A DANE:
 
 <?php
-$tablicaDanie["0"] = ["danie"=>"Schabowy", "cena"=>20];
-$tablicaDanie[1] = ["danie"=>"Frytki", "cena"=>10];
-$tablicaDanie[2] = ["danie"=>"Kebab", "cena"=>17];
+$tablicaDanie[0] = ["danie" => "rosół", "price" => 10];
+$tablicaDanie[1] = ["danie" => "krewetki", "price" => 30];
+$tablicaDanie[2] = ["danie" => "pierogi", "price" => 20];
 
-$tablicaDodatki[0]=["dodatek"=>"Keczup","cena"=>2];
-$tablicaDodatki[1]=["dodatek"=>"Cebula","cena"=>2];
-$tablicaDodatki[2]=["dodatek"=>"Boczek","cena"=>10];
+$tablicaDodatki[0] = ["dodatek" => "frytki", "price" => 5];
+$tablicaDodatki[1] = ["dodatek" => "pietruszka", "price" => 1];
+$tablicaDodatki[2] = ["dodatek" => "surówka", "price" => 7];
 ?>
 
 -------------------------------------------------------------------------------------
@@ -18,15 +18,15 @@ $tablicaDodatki[2]=["dodatek"=>"Boczek","cena"=>10];
 
 function oblicz($rodzaj, $ilosc, $dodatki){
     include ('dane.php');
-    $cena=0;
-    $cena=$tablicaDanie[$rodzaj]['cena']*$ilosc;
+    $price = 0;
+    $price = $tablicaDanie [$rodzaj] ['price'] * $ilosc;
     if(!empty($dodatki)){
         foreach ($dodatki as $a){
-            $cena += $a['cena'];
+            $price + = $a['price'];
         }
  }
 
-    return $cena;
+    return $price;
 }
 
 -------------------------------------------------------------------------------------------
@@ -45,37 +45,35 @@ include 'dane.php';
 //var_dump($tablicaDanie);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jedzonko</title>
+    <title>mniam mniam</title>
 </head>
 <body>
-<form action="index.php" method="get">
-    <label for="jedzenie">Wybierz danie:</label>
-    <select name="jedzenie" id="jedzenie">
+<form action = "index.php" method = "get">
+    <label for = "jedzenie">Wybierz danie:</label>
+    <select name = "jedzenie" id = "jedzenie">
         <?php
-        $i=0;
+        $i = 0;
         foreach ($tablicaDanie as $a){
-            echo '<option value="'.$i.'">'.$a["danie"]." Cena: ". $a["cena"].'</option>';
+            echo '<option value = "'.$i.'">'.$a["danie"]." Cena: ". $a["price"].'</option>';
             $i++;
         }
        ?>
     </select><br>
-    <label for="ilosc">Wybierz ilosc:</label>
-    <input type="number" name="ilosc" id="ilosc" required>
+    <label for = "ilosc">Wybierz ilosc:</label>
+    <input type = "number" name = "ilosc" id = "ilosc" required>
     <h3>Dodatki: </h3>
     <?php
-    $i=0;
+    $i = 0;
     foreach ($tablicaDodatki as $a){
-        echo '<label for="addon'.$i.'">'.$a['dodatek']." ".$a['cena'].'zł</label>';
-        echo '<input type="checkbox" name="'.$i.'" id="addon'.$i.'" value="1"><br>';
+        echo '<label for = "addon'.$i.'">'.$a['dodatek']." ".$a['price'].'zł</label>';
+        echo '<input type = "checkbox" name = "'.$i.'" id = "addon'.$i.'" value = "1"><br><br>';
         $i++;
     }
     ?>
 
-    <input type="submit" name="submit" value="submit">
+    <input type = "submit" name = "submit" value = "submit">
 </form>
 <?php
 if (isset($_GET['submit'])) {
@@ -89,10 +87,8 @@ $dodatki[$i] = $tablicaDodatki[$i];
 }
 $rodzaj = (int)$rodzaj;
 $ilosc = (int)$ilosc;
-//var_dump($rodzaj,$ilosc,$dodatki);
 echo oblicz($rodzaj, $ilosc, $dodatki);
 }?>
-
 
 </body>
 </html>
