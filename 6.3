@@ -5,16 +5,16 @@ session_start();
 /*-------------CHANGE TURN------------*/
 function changeTurn(){
     //var_dump($_SESSION['turn']);
-    if($_SESSION['turn']=="X"){
-        $_SESSION['turn']="O";
+    if($_SESSION['turn'] == "X"){
+        $_SESSION['turn'] = "O";
     }
     else{
-        $_SESSION['turn']="X";
+        $_SESSION['turn'] = "X";
     }
     $_SESSION['countTurn']++;
     /*-------------CHECK WINNER------------*/
     /*-------------CHECK HORIZONTALLY------------*/
-    if(($_SESSION['board'][0][0]=="X" and $_SESSION['board'][0][1]=="X" and $_SESSION['board'][0][2]=="X") or ($_SESSION['board'][1][0]=="X" and $_SESSION['board'][1][1]=="X" and $_SESSION['board'][1][2]=="X") or ($_SESSION['board'][2][0]=="X" and $_SESSION['board'][2][1]=="X" and $_SESSION['board'][2][2]=="X"))
+    if(($_SESSION['board'][0][0] == "X" and $_SESSION['board'][0][1] == "X" and $_SESSION['board'][0][2] == "X") or ($_SESSION['board'][1][0] == "X" and $_SESSION['board'][1][1] == "X" and $_SESSION['board'][1][2] == "X") or ($_SESSION['board'][2][0]=="X" and $_SESSION['board'][2][1]=="X" and $_SESSION['board'][2][2]=="X"))
     {
         $_SESSION['WINNER']="X";
     }
